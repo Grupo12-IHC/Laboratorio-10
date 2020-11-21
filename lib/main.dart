@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:chat_unsa/constant.dart';
 import 'package:chat_unsa/login.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -57,17 +58,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 text: TextSpan(
                   children:[
                     TextSpan(
-                      text: 'Bienvenido',
+                      text: 'Iniciando ...',
                       style: GoogleFonts.satisfy(
                         color: Colors.black,
-                        fontSize: 50,
-                      ),
-                    ),
-                    WidgetSpan(
-                      child: Icon(
-                        Icons.verified_user,
-                        color: Colors.red,
-                        size: 30.0,
+                        fontSize: 30,
                       ),
                     ),
                   ],
