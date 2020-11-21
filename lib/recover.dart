@@ -4,12 +4,11 @@ import 'package:chat_unsa/ButtonTransparent.dart';
 import 'package:chat_unsa/TextFieldContainer.dart';
 import 'package:chat_unsa/constant.dart';
 import 'package:chat_unsa/menu.dart';
-import 'package:chat_unsa/recover.dart';
 import 'package:chat_unsa/register.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Login extends StatelessWidget {
+class Recover extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appTitle = 'Form Validation Demo';
@@ -74,7 +73,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                   return null;
                 },
                 decoration: InputDecoration(
-                    labelText: 'Contraseña'
+                    labelText: 'Correo institucional'
                 ),
               ),
             ),
@@ -85,7 +84,6 @@ class MyCustomFormState extends State<MyCustomForm> {
                     context,
                     MaterialPageRoute(builder: (context) => Menu()),
                   );
-                  //if (_formKey.currentState.validate()){}
                 },
                 child: Text(
                   'Iniciar sesion',
@@ -98,73 +96,10 @@ class MyCustomFormState extends State<MyCustomForm> {
                 ),
               ),
             ),
-            ButtonTransparent(
-              child: Text(
-                'Inicia sesion con Dutic',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold
-                ),
-              ),
-            ),
-            ButtonTransparent(
-              child: GestureDetector(
-                onTap: (){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Recover()),
-                  );
-                },
-                child: Text(
-                  '¿Olvidastes tu constraseña?',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontSize: 15,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold
-                  ),
-                ),
-              ),
-            ),
-            ButtonTransparent(
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Register()),
-                  );
-                },
-                child: RichText(
-                  text: TextSpan(
-                    children: [
-                      TextSpan(
-                        text: '¿No tienes cuenta? ',
-                        style: TextStyle(
-                            fontSize: 15,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold
-                        ),
-                      ),
-                      TextSpan(
-                        text: 'Registrate aqui',
-                        style: TextStyle(
-                            fontSize: 15,
-                            color: colorPrimario,
-                            fontWeight: FontWeight.bold
-                        ),
-                      )
-                    ]
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
+
           ],
         ),
       ),
     );
   }
 }
-

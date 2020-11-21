@@ -1,6 +1,7 @@
 
 import 'package:chat_unsa/Button.dart';
 import 'package:chat_unsa/TextFieldContainer.dart';
+import 'package:chat_unsa/login.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -87,13 +88,21 @@ class MyCustomFormState extends State<MyCustomForm> {
               ),
             ),
             Button(
-              child: Text(
-                'Registrarse',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: 24,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold
+              child: GestureDetector(
+                onTap: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Login()),
+                  );
+                },
+                child: Text(
+                  'Registrarse',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontSize: 24,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold
+                  ),
                 ),
               ),
             ),
