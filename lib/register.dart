@@ -1,13 +1,10 @@
 
 import 'package:chat_unsa/Button.dart';
-import 'package:chat_unsa/ButtonTransparent.dart';
 import 'package:chat_unsa/TextFieldContainer.dart';
-import 'package:chat_unsa/menu.dart';
-import 'package:chat_unsa/register.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Login extends StatelessWidget {
+class Register extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appTitle = 'Form Validation Demo';
@@ -72,67 +69,31 @@ class MyCustomFormState extends State<MyCustomForm> {
                   return null;
                 },
                 decoration: InputDecoration(
+                    labelText: 'Correo institucional'
+                ),
+              ),
+            ),
+            TextFieldContainer(
+              child: TextFormField(
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Ingrese datos';
+                  }
+                  return null;
+                },
+                decoration: InputDecoration(
                     labelText: 'Contraseña'
                 ),
               ),
             ),
             Button(
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Menu()),
-                  );
-                },
-                child: Text(
-                  'Iniciar sesion',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontSize: 24,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold
-                  ),
-                ),
-              ),
-            ),
-            ButtonTransparent(
               child: Text(
-                'Inicia sesion con Dutic',
+                'Registrarse',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.black,
+                    fontSize: 24,
+                    color: Colors.white,
                     fontWeight: FontWeight.bold
-                ),
-              ),
-            ),
-            ButtonTransparent(
-              child: Text(
-                '¿Olvidastes tu constraseña?',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: 15,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold
-                ),
-              ),
-            ),
-            ButtonTransparent(
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Register()),
-                  );
-                },
-                child: Text(
-                  '¿No tienes cuenta? Registrate aqui',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontSize: 15,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold
-                  ),
                 ),
               ),
             ),
@@ -142,4 +103,3 @@ class MyCustomFormState extends State<MyCustomForm> {
     );
   }
 }
-
