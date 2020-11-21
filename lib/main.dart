@@ -52,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
               Container(
                 child: Image.asset('assets/images/login.png'),
               ),
-              RichText(
+              /*RichText(
                 text: TextSpan(
                   children:[
                     TextSpan(
@@ -65,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ],
                 ),
                 textAlign: TextAlign.center,
-              ),
+              ),*/
             ],
           )
       ),

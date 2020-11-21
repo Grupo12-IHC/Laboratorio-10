@@ -17,6 +17,15 @@ class Recover extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: appTitle,
       home: Scaffold(
+        appBar: AppBar(
+          leading: new IconButton(
+            icon: new Icon(Icons.arrow_back_ios, color: Colors.white,),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+          backgroundColor: colorPrimario,
+          title: Text('Recuperacion de cuenta'),
+          centerTitle: true,
+        ),
         backgroundColor: Colors.white,
         body: MyCustomForm(),
       ),

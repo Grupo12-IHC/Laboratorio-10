@@ -1,6 +1,7 @@
 
 import 'package:chat_unsa/Button.dart';
 import 'package:chat_unsa/TextFieldContainer.dart';
+import 'package:chat_unsa/constant.dart';
 import 'package:chat_unsa/login.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,19 @@ class Register extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: appTitle,
       home: Scaffold(
+        appBar: AppBar(
+          leading: new IconButton(
+            icon: new Icon(Icons.arrow_back_ios, color: Colors.white,),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+          elevation: 0,
+          title: new Text(
+              'Registrate',
+
+          ),
+          centerTitle: true,
+          backgroundColor: colorPrimario,
+        ),
         backgroundColor: Colors.white,
         body: MyCustomForm(),
       ),
