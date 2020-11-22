@@ -3,6 +3,7 @@ import 'package:chat_unsa/Button.dart';
 import 'package:chat_unsa/TextFieldContainer.dart';
 import 'package:chat_unsa/constant.dart';
 import 'package:chat_unsa/login.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -44,8 +45,23 @@ class MyCustomForm extends StatefulWidget {
 }
 
 class MyCustomFormState extends State<MyCustomForm> {
+  String _email;
+  String _password;
 
   final _formKey = GlobalKey<FormState>();
+
+  Future<void> _createUser() async {
+    try {
+      UserCredential userCredential = await FirebaseAuth
+          .instance
+          .createUserWithEmailAndPassword(email: _email, password: _password);
+    } on FirebaseAuthException catch (e) {
+      print('Error: $e');
+    } catch (e) {
+      print('Error: $e');
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -64,19 +80,9 @@ class MyCustomFormState extends State<MyCustomForm> {
             ),
             TextFieldContainer(
               child: TextFormField(
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return 'Ingrese datos';
-                  }
-                  return null;
+                onChanged: (value) {
+                  _email = value;
                 },
-                decoration: InputDecoration(
-                    labelText: 'CUI'
-                ),
-              ),
-            ),
-            TextFieldContainer(
-              child: TextFormField(
                 validator: (value) {
                   if (value.isEmpty) {
                     return 'Ingrese datos';
@@ -90,6 +96,9 @@ class MyCustomFormState extends State<MyCustomForm> {
             ),
             TextFieldContainer(
               child: TextFormField(
+                onChanged: (value) {
+                  _password = value;
+                },
                 validator: (value) {
                   if (value.isEmpty) {
                     return 'Ingrese datos';
@@ -104,6 +113,7 @@ class MyCustomFormState extends State<MyCustomForm> {
             Button(
               child: GestureDetector(
                 onTap: (){
+                  _createUser();
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => Login()),

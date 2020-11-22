@@ -6,6 +6,7 @@ import 'package:chat_unsa/constant.dart';
 import 'package:chat_unsa/menu.dart';
 import 'package:chat_unsa/recover.dart';
 import 'package:chat_unsa/register.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -35,7 +36,22 @@ class MyCustomForm extends StatefulWidget {
 
 class MyCustomFormState extends State<MyCustomForm> {
 
+  String _email;
+  String _password;
+
   final _formKey = GlobalKey<FormState>();
+
+  Future<void> _login() async {
+    try {
+      UserCredential userCredential = await FirebaseAuth
+          .instance
+          .signInWithEmailAndPassword(email: _email, password: _password);
+    } on FirebaseAuthException catch (e) {
+      print('Error: $e');
+    } catch (e) {
+      print('Error: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +70,9 @@ class MyCustomFormState extends State<MyCustomForm> {
             ),
             TextFieldContainer(
               child: TextFormField(
+                onChanged: (value) {
+                  _email = value;
+                },
                 validator: (value) {
                   if (value.isEmpty) {
                     return 'Ingrese datos';
@@ -61,12 +80,15 @@ class MyCustomFormState extends State<MyCustomForm> {
                   return null;
                 },
                 decoration: InputDecoration(
-                    labelText: 'CUI'
+                    labelText: 'Correo institucional'
                 ),
               ),
             ),
             TextFieldContainer(
               child: TextFormField(
+                onChanged: (value) {
+                  _password = value;
+                },
                 validator: (value) {
                   if (value.isEmpty) {
                     return 'Ingrese datos';
@@ -81,6 +103,7 @@ class MyCustomFormState extends State<MyCustomForm> {
             Button(
               child: GestureDetector(
                 onTap: () {
+                  _login();
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => Menu()),

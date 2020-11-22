@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "961731876133",
+    "firebase_url": "https://chatunsa.firebaseio.com",
+    "project_id": "chatunsa",
+    "storage_bucket": "chatunsa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:961731876133:android:06296387b7d0e0c605f6cc",
+        "android_client_info": {
+          "package_name": "com.chat_unsa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "961731876133-podn4pd6bv585be5g960ledbl3n0a7io.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTTS4A7aCOlPm8i_d9Pgk0_oiSu8l97Rk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "961731876133-podn4pd6bv585be5g960ledbl3n0a7io.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,6 +1,10 @@
 import 'dart:async';
 
 import 'package:chat_unsa/login.dart';
+import 'package:chat_unsa/menu.dart';
+import 'package:chat_unsa/register.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -13,21 +17,69 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Splash Screen',
+      title: 'chat unsa',
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: MyHomePage(),
+      home: LandingPage(),
       debugShowCheckedModeBanner: false,
     );
   }
 }
+class LandingPage extends StatelessWidget {
+  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return FutureBuilder(
+      future: _initialization,
+        builder: (context, snapshot){
+          if (snapshot.hasError) {
+            return Scaffold(
+              body: Center(
+                child: Text( "Error: ${snapshot.error}" ),
+              ),
+            );
+          }
+          if (snapshot.connectionState == ConnectionState.done) {
+            return StreamBuilder(
+                stream: FirebaseAuth.instance.authStateChanges(),
+                builder: (context, snapshot) {
+                  if ( snapshot.connectionState == ConnectionState.active){
+                    User user = snapshot.data;
+                    if(user == null){
+                      return Login();
+                    }else {
+                      return Menu();
+                    }
+                  }
+                  return Scaffold(
+                    body: Center(
+                      child: Text('connecting'),
+                    ),
+                  );
+                },
 
+            );
+
+          }
+          return Scaffold(
+            body: Center(
+              child: Text('connecting'),
+            ),
+          );
+        }
+    );
+  }
+}
 class MyHomePage extends StatefulWidget {
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 class _MyHomePageState extends State<MyHomePage> {
+
+
+
   @override
   void initState() {
     super.initState();

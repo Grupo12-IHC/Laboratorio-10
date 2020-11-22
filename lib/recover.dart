@@ -5,6 +5,7 @@ import 'package:chat_unsa/TextFieldContainer.dart';
 import 'package:chat_unsa/constant.dart';
 import 'package:chat_unsa/menu.dart';
 import 'package:chat_unsa/register.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -44,6 +45,7 @@ class MyCustomForm extends StatefulWidget {
 class MyCustomFormState extends State<MyCustomForm> {
 
   final _formKey = GlobalKey<FormState>();
+
 
   @override
   Widget build(BuildContext context) {
