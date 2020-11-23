@@ -1,11 +1,8 @@
 
 import 'package:chat_unsa/Button.dart';
-import 'package:chat_unsa/ButtonTransparent.dart';
 import 'package:chat_unsa/TextFieldContainer.dart';
 import 'package:chat_unsa/constant.dart';
-import 'package:chat_unsa/menu.dart';
-import 'package:chat_unsa/register.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:chat_unsa/listview_contacto.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -95,7 +92,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Menu()),
+                    MaterialPageRoute(builder: (context) => ListViewProduct()),
                   );
                 },
                 child: Text(
@@ -116,13 +113,3 @@ class MyCustomFormState extends State<MyCustomForm> {
     );
   }
 }
-/*
-var auth = firebase.auth();
-var emailAddress = "user@example.com";
-
-auth.sendPasswordResetEmail(emailAddress).then(function() {
-  // Email sent.
-}).catch(function(error) {
-  // An error happened.
-});
- */

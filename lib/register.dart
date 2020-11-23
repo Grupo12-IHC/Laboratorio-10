@@ -24,7 +24,7 @@ class Register extends StatelessWidget {
           leading: new IconButton(
             icon: new Icon(
               Icons.arrow_back_ios,
-              color: colorPrimario,
+              color: Colors.white,
             ),
             onPressed: () => Navigator.of(context).pop(),
           ),
@@ -32,11 +32,11 @@ class Register extends StatelessWidget {
           title: new Text(
               'REGISTRATE',
             style: TextStyle(
-              color: Colors.black,
+              color: colorPrimario,
             ),
           ),
           centerTitle: true,
-          backgroundColor: Colors.white,
+          backgroundColor: colorPrimario,
         ),
         backgroundColor: Colors.white,
         body: MyCustomForm(),

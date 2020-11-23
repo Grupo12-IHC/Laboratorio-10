@@ -75,7 +75,7 @@ class _ListViewProductState extends State<ListViewProduct> {
                       height: 1.0,
                     ),
                     Container(
-                      padding: new EdgeInsets.all(3.0),
+                      padding: new EdgeInsets.all(15),
                       child: Card(
                         child: Row(
                           children: <Widget>[
