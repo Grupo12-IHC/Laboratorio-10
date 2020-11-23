@@ -15,19 +15,28 @@ class Register extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: appTitle,
+      theme: ThemeData(
+        primaryColor: Colors.black,
+        scaffoldBackgroundColor: Colors.white,
+      ),
       home: Scaffold(
         appBar: AppBar(
           leading: new IconButton(
-            icon: new Icon(Icons.arrow_back_ios, color: Colors.white,),
+            icon: new Icon(
+              Icons.arrow_back_ios,
+              color: colorPrimario,
+            ),
             onPressed: () => Navigator.of(context).pop(),
           ),
           elevation: 0,
           title: new Text(
-              'Registrate',
-
+              'REGISTRATE',
+            style: TextStyle(
+              color: Colors.black,
+            ),
           ),
           centerTitle: true,
-          backgroundColor: colorPrimario,
+          backgroundColor: Colors.white,
         ),
         backgroundColor: Colors.white,
         body: MyCustomForm(),
@@ -108,6 +117,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                 decoration: InputDecoration(
                     labelText: 'Contraseña'
                 ),
+                obscureText: true,
               ),
             ),
             Button(

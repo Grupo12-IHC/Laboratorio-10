@@ -46,6 +46,8 @@ class MyCustomFormState extends State<MyCustomForm> {
 
   final _formKey = GlobalKey<FormState>();
 
+  @override
+
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +64,7 @@ class MyCustomFormState extends State<MyCustomForm> {
             Image(
                 image: AssetImage('assets/images/login.png')
             ),
-            TextFieldContainer(
+            /*TextFieldContainer(
               child: TextFormField(
                 validator: (value) {
                   if (value.isEmpty) {
@@ -74,7 +76,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                     labelText: 'CUI'
                 ),
               ),
-            ),
+            ),*/
             TextFieldContainer(
               child: TextFormField(
                 validator: (value) {
@@ -114,3 +116,13 @@ class MyCustomFormState extends State<MyCustomForm> {
     );
   }
 }
+/*
+var auth = firebase.auth();
+var emailAddress = "user@example.com";
+
+auth.sendPasswordResetEmail(emailAddress).then(function() {
+  // Email sent.
+}).catch(function(error) {
+  // An error happened.
+});
+ */

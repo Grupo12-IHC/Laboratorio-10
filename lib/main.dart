@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:chat_unsa/listview_contacto.dart';
 import 'package:chat_unsa/login.dart';
 import 'package:chat_unsa/menu.dart';
 import 'package:chat_unsa/register.dart';
@@ -19,7 +20,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'chat unsa',
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primaryColor: Colors.black,
+        scaffoldBackgroundColor: Colors.white,
       ),
       home: LandingPage(),
       debugShowCheckedModeBanner: false,
@@ -48,24 +50,23 @@ class LandingPage extends StatelessWidget {
                   if ( snapshot.connectionState == ConnectionState.active){
                     User user = snapshot.data;
                     if(user == null){
-                      return Login();
+                      return MyHomePage();
                     }else {
-                      return Menu();
+                      return ListViewProduct();
                     }
                   }
                   return Scaffold(
                     body: Center(
-                      child: Text('connecting'),
+                      child: Text('Cargando ...'),
                     ),
                   );
                 },
 
             );
-
           }
           return Scaffold(
             body: Center(
-              child: Text('connecting'),
+              child: Text('Cargando ...'),
             ),
           );
         }
@@ -104,25 +105,9 @@ class _MyHomePageState extends State<MyHomePage> {
               Container(
                 child: Image.asset('assets/images/login.png'),
               ),
-              /*RichText(
-                text: TextSpan(
-                  children:[
-                    TextSpan(
-                      text: 'Iniciando ...',
-                      style: GoogleFonts.satisfy(
-                        color: Colors.black,
-                        fontSize: 30,
-                      ),
-                    ),
-                  ],
-                ),
-                textAlign: TextAlign.center,
-              ),*/
             ],
           )
       ),
-
-      //Image.asset('assets/icon/inicio.png'),
     );
   }
 }

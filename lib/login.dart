@@ -3,6 +3,7 @@ import 'package:chat_unsa/Button.dart';
 import 'package:chat_unsa/ButtonTransparent.dart';
 import 'package:chat_unsa/TextFieldContainer.dart';
 import 'package:chat_unsa/constant.dart';
+import 'package:chat_unsa/listview_contacto.dart';
 import 'package:chat_unsa/menu.dart';
 import 'package:chat_unsa/recover.dart';
 import 'package:chat_unsa/register.dart';
@@ -18,6 +19,10 @@ class Login extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: appTitle,
+      theme: ThemeData(
+        primaryColor: Colors.black,
+        scaffoldBackgroundColor: Colors.white,
+      ),
       home: Scaffold(
         backgroundColor: Colors.white,
         body: MyCustomForm(),
@@ -46,6 +51,10 @@ class MyCustomFormState extends State<MyCustomForm> {
       UserCredential userCredential = await FirebaseAuth
           .instance
           .signInWithEmailAndPassword(email: _email, password: _password);
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => ListViewProduct()),
+      );
     } on FirebaseAuthException catch (e) {
       print('Error: $e');
     } catch (e) {
@@ -79,9 +88,14 @@ class MyCustomFormState extends State<MyCustomForm> {
                   }
                   return null;
                 },
-                decoration: InputDecoration(
-                    labelText: 'Correo institucional'
+                style: TextStyle(
+                  color: Colors.black
                 ),
+                decoration: InputDecoration(
+                    labelText: 'Correo institucional',
+
+                ),
+
               ),
             ),
             TextFieldContainer(
@@ -89,6 +103,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                 onChanged: (value) {
                   _password = value;
                 },
+                obscureText: true,
                 validator: (value) {
                   if (value.isEmpty) {
                     return 'Ingrese datos';
@@ -104,10 +119,6 @@ class MyCustomFormState extends State<MyCustomForm> {
               child: GestureDetector(
                 onTap: () {
                   _login();
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Menu()),
-                  );
                   //if (_formKey.currentState.validate()){}
                 },
                 child: Text(
@@ -121,7 +132,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                 ),
               ),
             ),
-            ButtonTransparent(
+            /*ButtonTransparent(
               child: Text(
                 'Inicia sesion con Dutic',
                 textAlign: TextAlign.center,
@@ -131,7 +142,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                     fontWeight: FontWeight.bold
                 ),
               ),
-            ),
+            ),*/
             ButtonTransparent(
               child: GestureDetector(
                 onTap: (){
