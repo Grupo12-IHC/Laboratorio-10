@@ -67,7 +67,7 @@ class _ListViewProductState extends State<ListViewProduct> {
         body: Center(
           child: ListView.builder(
               itemCount: items.length,
-              padding: EdgeInsets.only(top: 3.0),
+              padding: EdgeInsets.only(top: 0),
               itemBuilder: (context, position) {
                 return Column(
                   children: <Widget>[
