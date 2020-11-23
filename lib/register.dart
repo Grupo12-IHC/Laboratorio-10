@@ -32,7 +32,7 @@ class Register extends StatelessWidget {
           title: new Text(
               'REGISTRATE',
             style: TextStyle(
-              color: colorPrimario,
+              color: Colors.white,
             ),
           ),
           centerTitle: true,

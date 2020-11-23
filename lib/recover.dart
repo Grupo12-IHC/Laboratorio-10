@@ -61,19 +61,6 @@ class MyCustomFormState extends State<MyCustomForm> {
             Image(
                 image: AssetImage('assets/images/login.png')
             ),
-            /*TextFieldContainer(
-              child: TextFormField(
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return 'Ingrese datos';
-                  }
-                  return null;
-                },
-                decoration: InputDecoration(
-                    labelText: 'CUI'
-                ),
-              ),
-            ),*/
             TextFieldContainer(
               child: TextFormField(
                 validator: (value) {
@@ -96,10 +83,10 @@ class MyCustomFormState extends State<MyCustomForm> {
                   );
                 },
                 child: Text(
-                  'Iniciar sesion',
+                  'Enviar codioo de recuperacion',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 16,
                       color: Colors.white,
                       fontWeight: FontWeight.bold
                   ),
