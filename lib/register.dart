@@ -123,11 +123,13 @@ class MyCustomFormState extends State<MyCustomForm> {
             Button(
               child: GestureDetector(
                 onTap: (){
-                  _createUser();
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Login()),
-                  );
+                  if (_formKey.currentState.validate()){
+                    _createUser();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Login()),
+                    );
+                  };
                 },
                 child: Text(
                   'Registrarse',

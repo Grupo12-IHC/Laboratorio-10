@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget {
 }
 class LandingPage extends StatelessWidget {
   final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -37,11 +38,7 @@ class LandingPage extends StatelessWidget {
       future: _initialization,
         builder: (context, snapshot){
           if (snapshot.hasError) {
-            return Scaffold(
-              body: Center(
-                child: Text( "Error: ${snapshot.error}" ),
-              ),
-            );
+            return MyHomePage();
           }
           if (snapshot.connectionState == ConnectionState.done) {
             return StreamBuilder(
@@ -50,25 +47,17 @@ class LandingPage extends StatelessWidget {
                   if ( snapshot.connectionState == ConnectionState.active){
                     User user = snapshot.data;
                     if(user == null){
-                      return MyHomePage();
+                      return Login();
                     }else {
                       return ListViewProduct();
                     }
                   }
-                  return Scaffold(
-                    body: Center(
-                      child: Text('Cargando ...'),
-                    ),
-                  );
+                  return MyHomePage();
                 },
 
             );
           }
-          return Scaffold(
-            body: Center(
-              child: Text('Cargando ...'),
-            ),
-          );
+          return MyHomePage();
         }
     );
   }
@@ -84,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 3),
+    Timer(Duration(seconds: 4),
             ()=>Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (context) => Login()
             )

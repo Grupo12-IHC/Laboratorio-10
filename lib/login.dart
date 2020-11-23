@@ -56,8 +56,10 @@ class MyCustomFormState extends State<MyCustomForm> {
         MaterialPageRoute(builder: (context) => ListViewProduct()),
       );
     } on FirebaseAuthException catch (e) {
+      _showDialog(context);
       print('Error: $e');
     } catch (e) {
+      _showDialog(context);
       print('Error: $e');
     }
   }
@@ -118,7 +120,9 @@ class MyCustomFormState extends State<MyCustomForm> {
             Button(
               child: GestureDetector(
                 onTap: () {
-                  _login();
+                  if (_formKey.currentState.validate()){
+                    _login();
+                  }
                   //if (_formKey.currentState.validate()){}
                 },
                 child: Text(
@@ -132,17 +136,6 @@ class MyCustomFormState extends State<MyCustomForm> {
                 ),
               ),
             ),
-            /*ButtonTransparent(
-              child: Text(
-                'Inicia sesion con Dutic',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold
-                ),
-              ),
-            ),*/
             ButtonTransparent(
               child: GestureDetector(
                 onTap: (){
@@ -198,6 +191,17 @@ class MyCustomFormState extends State<MyCustomForm> {
           ],
         ),
       ),
+    );
+  }
+  void _showDialog(context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Alerta'),
+          content: Text('El usuario que usted ha ingresado no existe.'),
+        );
+      },
     );
   }
 }
