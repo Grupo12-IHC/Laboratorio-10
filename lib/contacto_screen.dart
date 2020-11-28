@@ -25,7 +25,8 @@ class _ContactoScreenState extends State<ContactoScreen> {
   TextEditingController _nombreController;
   TextEditingController _cuiController;
   TextEditingController _correoController;
-  TextEditingController _escuelaController;
+  TextEditingController _escuelaController
+  ;
 
   Widget divider() {
     return Padding(

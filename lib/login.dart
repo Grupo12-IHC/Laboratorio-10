@@ -65,18 +65,18 @@ class MyCustomFormState extends State<MyCustomForm> {
 
   @override
   Widget build(BuildContext context) {
-
+    Size size = MediaQuery.of(context).size;
     return Form(
       key: _formKey,
       child: Container(
         width: double.infinity,
-
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Image(
-                image: AssetImage('assets/images/login.png')
+                image: AssetImage('assets/images/chat_unsa.png'),
+              width: size.height* 0.42,
             ),
             TextFieldContainer(
               child: TextFormField(
@@ -122,7 +122,6 @@ class MyCustomFormState extends State<MyCustomForm> {
                   if (_formKey.currentState.validate()){
                     _login();
                   }
-                  //if (_formKey.currentState.validate()){}
                 },
                 child: Text(
                   'Iniciar sesion',
