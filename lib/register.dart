@@ -1,4 +1,3 @@
-
 import 'package:chat_unsa/Button.dart';
 import 'package:chat_unsa/TextFieldContainer.dart';
 import 'package:chat_unsa/constant.dart';
@@ -7,11 +6,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+//Internalización
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:chat_unsa/generated/l10n.dart';
+
 class Register extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appTitle = 'Form Validation Demo';
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: appTitle,
@@ -30,7 +32,7 @@ class Register extends StatelessWidget {
           ),
           elevation: 0,
           title: new Text(
-              'REGISTRATE',
+            'REGISTRATE',
             style: TextStyle(
               color: Colors.white,
             ),
@@ -61,8 +63,7 @@ class MyCustomFormState extends State<MyCustomForm> {
 
   Future<void> _createUser() async {
     try {
-      UserCredential userCredential = await FirebaseAuth
-          .instance
+      UserCredential userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: _email, password: _password);
     } on FirebaseAuthException catch (e) {
       print('Error: $e');
@@ -71,22 +72,17 @@ class MyCustomFormState extends State<MyCustomForm> {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
-
     return Form(
       key: _formKey,
       child: Container(
         width: double.infinity,
-
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Image(
-                image: AssetImage('assets/images/login.png')
-            ),
+            Image(image: AssetImage('assets/images/login.png')),
             TextFieldContainer(
               child: TextFormField(
                 onChanged: (value) {
@@ -98,9 +94,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                   }
                   return null;
                 },
-                decoration: InputDecoration(
-                    labelText: 'Correo institucional'
-                ),
+                decoration: InputDecoration(labelText: 'Correo institucional'),
               ),
             ),
             TextFieldContainer(
@@ -114,22 +108,20 @@ class MyCustomFormState extends State<MyCustomForm> {
                   }
                   return null;
                 },
-                decoration: InputDecoration(
-                    labelText: 'Contraseña'
-                ),
+                decoration: InputDecoration(labelText: 'Contraseña'),
                 obscureText: true,
               ),
             ),
             Button(
               child: GestureDetector(
-                onTap: (){
-                  if (_formKey.currentState.validate()){
+                onTap: () {
+                  if (_formKey.currentState.validate()) {
                     _createUser();
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => Login()),
                     );
-                  };
+                  } //;
                 },
                 child: Text(
                   'Registrarse',
@@ -137,8 +129,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                   style: TextStyle(
                       fontSize: 24,
                       color: Colors.white,
-                      fontWeight: FontWeight.bold
-                  ),
+                      fontWeight: FontWeight.bold),
                 ),
               ),
             ),

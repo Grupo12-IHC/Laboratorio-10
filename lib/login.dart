@@ -1,4 +1,3 @@
-
 import 'package:chat_unsa/Button.dart';
 import 'package:chat_unsa/ButtonTransparent.dart';
 import 'package:chat_unsa/TextFieldContainer.dart';
@@ -9,6 +8,11 @@ import 'package:chat_unsa/register.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+//Internalización
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:chat_unsa/generated/l10n.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
 class Login extends StatelessWidget {
   @override
@@ -26,6 +30,14 @@ class Login extends StatelessWidget {
         backgroundColor: Colors.white,
         body: MyCustomForm(),
       ),
+      //Internaliación
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        S.delegate
+      ],
+      supportedLocales: S.delegate.supportedLocales,
     );
   }
 }
@@ -39,7 +51,6 @@ class MyCustomForm extends StatefulWidget {
 }
 
 class MyCustomFormState extends State<MyCustomForm> {
-
   String _email;
   String _password;
 
@@ -47,9 +58,8 @@ class MyCustomFormState extends State<MyCustomForm> {
 
   Future<void> _login() async {
     try {
-      UserCredential userCredential = await FirebaseAuth
-          .instance
-          .signInWithEmailAndPassword(email: _email, password: _password);
+      UserCredential userCredential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: _email.trim(), password: _password);
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => ListViewProduct()),
@@ -66,141 +76,171 @@ class MyCustomFormState extends State<MyCustomForm> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Form(
-      key: _formKey,
-      child: Container(
-        width: double.infinity,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Image(
+      return Scaffold(
+        floatingActionButton: SpeedDial(
+          child: Icon(
+            Icons.language,
+            color: Colors.white,
+          ),
+          overlayColor: Colors.white.withOpacity(0.3),
+          backgroundColor: colorPrimario,
+          children: [
+            SpeedDialChild(
+                child: Image.asset('assets/icon/peru.png'),
+                backgroundColor: Colors.white,
+                onTap: () {
+                  setState(() {
+                    S.load(Locale('es'));
+                  });
+                }
+            ),
+            SpeedDialChild(
+              child: Image.asset('assets/icon/eeuu.png'),
+              backgroundColor: Colors.white,
+                onTap: () {
+                  setState(() {
+                    S.load(Locale('en'));
+                  });
+                }
+            ),
+            SpeedDialChild(
+              child: Image.asset('assets/icon/brasil.png'),
+              backgroundColor: Colors.white,
+                onTap: () {
+                  setState(() {
+                    S.load(Locale('pt'));
+                  });
+                }
+            )
+          ],
+        ),
+        body: Form(
+        key: _formKey,
+        child: Container(
+          width: double.infinity,
+          margin: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Image(
                 image: AssetImage('assets/images/chat_unsa.png'),
-              width: size.height* 0.42,
-            ),
-            TextFieldContainer(
-              child: TextFormField(
-                onChanged: (value) {
-                  _email = value;
-                },
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return 'Ingrese datos';
-                  }
-                  return null;
-                },
-                style: TextStyle(
-                  color: Colors.black
-                ),
-                decoration: InputDecoration(
-                    labelText: 'Correo institucional',
-
-                ),
-
+                width: size.height * 0.42,
               ),
-            ),
-            TextFieldContainer(
-              child: TextFormField(
-                onChanged: (value) {
-                  _password = value;
-                },
-                obscureText: true,
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return 'Ingrese datos';
-                  }
-                  return null;
-                },
-                decoration: InputDecoration(
-                    labelText: 'Contraseña'
-                ),
-              ),
-            ),
-            Button(
-              child: GestureDetector(
-                onTap: () {
-                  if (_formKey.currentState.validate()){
-                    _login();
-                  }
-                },
-                child: Text(
-                  'Iniciar sesion',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontSize: 24,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold
+              TextFieldContainer(
+                child: TextFormField(
+                  onChanged: (value) {
+                    _email = value;
+                  },
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return S.of(context).ingreseDatosText;
+                    }
+                    return null;
+                  },
+                  style: TextStyle(color: Colors.black),
+                  decoration: InputDecoration(
+                    labelText: S.of(context).correoInstitucionalText,
                   ),
                 ),
               ),
-            ),
-            ButtonTransparent(
-              child: GestureDetector(
-                onTap: (){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Recover()),
-                  );
-                },
-                child: Text(
-                  '¿Olvidastes tu constraseña?',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontSize: 15,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold
+              TextFieldContainer(
+                child: TextFormField(
+                  onChanged: (value) {
+                    _password = value;
+                  },
+                  obscureText: true,
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return S.of(context).ingreseDatosText;
+                    }
+                    return null;
+                  },
+                  decoration:
+                  InputDecoration(labelText: S.of(context).contraText),
+                ),
+              ),
+              Button(
+                child: GestureDetector(
+                  onTap: () {
+                    if (_formKey.currentState.validate()) {
+                      _login();
+                    }
+                  },
+                  child: Text(
+                    S.of(context).iniciarSesionText,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 24,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
-            ),
-            ButtonTransparent(
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Register()),
-                  );
-                },
-                child: RichText(
-                  text: TextSpan(
-                    children: [
+              ButtonTransparent(
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Recover()),
+                    );
+                  },
+                  child: Text(
+                    S.of(context).preguntaOlvidasteContraText,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 15,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+              ButtonTransparent(
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Register()),
+                    );
+                  },
+                  child: RichText(
+                    text: TextSpan(children: [
                       TextSpan(
-                        text: '¿No tienes cuenta? ',
+                        text: S.of(context).preguntaNoTienesCuentaText,
                         style: TextStyle(
                             fontSize: 15,
                             color: Colors.black,
-                            fontWeight: FontWeight.bold
-                        ),
+                            fontWeight: FontWeight.bold),
                       ),
                       TextSpan(
-                        text: 'Registrate aqui',
+                        text: S.of(context).registrateAquiText,
                         style: TextStyle(
                             fontSize: 15,
                             color: colorPrimario,
-                            fontWeight: FontWeight.bold
-                        ),
+                            fontWeight: FontWeight.bold),
                       )
-                    ]
+                    ]),
+                    textAlign: TextAlign.center,
                   ),
-                  textAlign: TextAlign.center,
                 ),
               ),
-            ),
-          ],
+
+            ],
+          ),
         ),
       ),
-    );
+      );
   }
+
   void _showDialog(context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Alerta'),
-          content: Text('El usuario que usted ha ingresado no existe.'),
+          title: Text(S.of(context).alertaText),
+          content: Text(S.of(context).usuarioNoExistenteText),
         );
       },
     );
   }
 }
-

@@ -6,10 +6,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
+//Internalización
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:chat_unsa/generated/l10n.dart';
+
 void main() {
   runApp(MyApp());
 }
-
 
 class MyApp extends StatelessWidget {
   @override
@@ -22,9 +25,18 @@ class MyApp extends StatelessWidget {
       ),
       home: LandingPage(),
       debugShowCheckedModeBanner: false,
+      //Internaliación
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        S.delegate
+      ],
+      supportedLocales: S.delegate.supportedLocales,
     );
   }
 }
+
 class LandingPage extends StatelessWidget {
   final Future<FirebaseApp> _initialization = Firebase.initializeApp();
 
@@ -32,30 +44,28 @@ class LandingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return FutureBuilder(
-      future: _initialization,
-        builder: (context, snapshot){
+        future: _initialization,
+        builder: (context, snapshot) {
           if (snapshot.hasError) {
             return Carga();
           }
           if (snapshot.connectionState == ConnectionState.done) {
             return StreamBuilder(
-                stream: FirebaseAuth.instance.authStateChanges(),
-                builder: (context, snapshot) {
-                  if ( snapshot.connectionState == ConnectionState.active){
-                    User user = snapshot.data;
-                    if(user == null){
-                      return Carga();
-                    }else {
-                      return ListViewProduct();
-                    }
+              stream: FirebaseAuth.instance.authStateChanges(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.active) {
+                  User user = snapshot.data;
+                  if (user == null) {
+                    return Login();
+                  } else {
+                    return ListViewProduct();
                   }
-                  return Carga();
-                },
-
+                }
+                return Carga();
+              },
             );
           }
           return Carga();
-        }
-    );
+        });
   }
 }

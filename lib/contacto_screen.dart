@@ -2,9 +2,13 @@ import 'package:chat_unsa/constant.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'file:///D:/Proyectos/chat_unsa2/lib/contacto.dart';
+//import 'file:///D:/Proyectos/chat_unsa2/lib/contacto.dart';
+import 'package:chat_unsa/contacto.dart';
 import 'dart:io';
 
+//Internalización
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:chat_unsa/generated/l10n.dart';
 
 File image;
 String filename;
@@ -25,8 +29,7 @@ class _ContactoScreenState extends State<ContactoScreen> {
   TextEditingController _nombreController;
   TextEditingController _cuiController;
   TextEditingController _correoController;
-  TextEditingController _escuelaController
-  ;
+  TextEditingController _escuelaController;
 
   Widget divider() {
     return Padding(
@@ -51,6 +54,16 @@ class _ContactoScreenState extends State<ContactoScreen> {
 
   @override
   Widget build(BuildContext context) {
+    //Internaliación
+    localizationsDelegates:
+    [
+      GlobalMaterialLocalizations.delegate,
+      GlobalWidgetsLocalizations.delegate,
+      GlobalCupertinoLocalizations.delegate,
+      S.delegate
+    ];
+    supportedLocales:
+    S.delegate.supportedLocales;
     return Scaffold(
       resizeToAvoidBottomPadding: false,
       appBar: AppBar(
@@ -62,10 +75,10 @@ class _ContactoScreenState extends State<ContactoScreen> {
           onPressed: () => Navigator.of(context).pop(),
         ),
         title: Text(
-          'Contacto',
-           style: TextStyle(
-             color: colorPrimario,
-           ),
+          S.of(context).contactoText,
+          style: TextStyle(
+            color: colorPrimario,
+          ),
         ),
         backgroundColor: Colors.white,
       ),
@@ -81,24 +94,20 @@ class _ContactoScreenState extends State<ContactoScreen> {
               children: <Widget>[
                 TextField(
                   controller: _nombreController,
-                  style:
-                      TextStyle(
-                          fontSize: 17.0,
-                          color: Colors.black),
+                  style: TextStyle(fontSize: 17.0, color: Colors.black),
                   decoration: InputDecoration(
                       icon: Icon(Icons.person),
-                      labelText: 'Nombre'),
+                      labelText: S.of(context).nombreText),
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 20),
                 ),
                 TextField(
                   controller: _cuiController,
-                  style:
-                      TextStyle(fontSize: 17.0, color: Colors.black),
+                  style: TextStyle(fontSize: 17.0, color: Colors.black),
                   decoration: InputDecoration(
                       icon: Icon(Icons.credit_card_outlined),
-                      labelText: 'CUI'),
+                      labelText: S.of(context).cuiText),
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 20),
@@ -106,11 +115,10 @@ class _ContactoScreenState extends State<ContactoScreen> {
                 Divider(),
                 TextField(
                   controller: _correoController,
-                  style:
-                      TextStyle(fontSize: 17.0, color: Colors.black),
+                  style: TextStyle(fontSize: 17.0, color: Colors.black),
                   decoration: InputDecoration(
                       icon: Icon(Icons.email),
-                      labelText: 'Correo'),
+                      labelText: S.of(context).correoText),
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 20),
@@ -118,16 +126,14 @@ class _ContactoScreenState extends State<ContactoScreen> {
                 Divider(),
                 TextField(
                   controller: _escuelaController,
-                  style:
-                      TextStyle(fontSize: 17.0, color: Colors.black),
+                  style: TextStyle(fontSize: 17.0, color: Colors.black),
                   decoration: InputDecoration(
                       icon: Icon(Icons.school),
-                      labelText: 'Escuela'),
+                      labelText: S.of(context).escuelaText),
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 20),
                 ),
-
                 FlatButton(
                     onPressed: () {
                       if (widget.contacto.id != null) {
@@ -142,7 +148,6 @@ class _ContactoScreenState extends State<ContactoScreen> {
                           Navigator.pop(context);
                         });
                       } else {
-
                         var part1 =
                             'https://firebasestorage.googleapis.com/v0/b/flutterimagen.appspot.com/o/';
 
@@ -158,19 +163,19 @@ class _ContactoScreenState extends State<ContactoScreen> {
                     },
                     child: (widget.contacto.id != null)
                         ? Text(
-                        'Actualizar',
-                      style: TextStyle(
-                        color: colorPrimario,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    )
+                            S.of(context).actualizarText,
+                            style: TextStyle(
+                              color: colorPrimario,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          )
                         : Text(
-                      'Agregar',
-                      style: TextStyle(
-                        color: colorPrimario,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    )),
+                            S.of(context).agregarText,
+                            style: TextStyle(
+                              color: colorPrimario,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          )),
               ],
             ),
           ),

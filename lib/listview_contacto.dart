@@ -6,14 +6,20 @@ import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'dart:async';
 
-import 'file:///D:/Proyectos/chat_unsa2/lib/contacto.dart';
+import 'package:chat_unsa/contacto.dart';
+//import 'file:///D:/Proyectos/chat_unsa2/lib/contacto.dart';
+
+//Internalización
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:chat_unsa/generated/l10n.dart';
 
 class ListViewProduct extends StatefulWidget {
   @override
   _ListViewProductState createState() => _ListViewProductState();
 }
 
-final contactoReference = FirebaseDatabase.instance.reference().child('contacto');
+final contactoReference =
+    FirebaseDatabase.instance.reference().child('contacto');
 
 class _ListViewProductState extends State<ListViewProduct> {
   List<Contacto> items;
@@ -40,11 +46,19 @@ class _ListViewProductState extends State<ListViewProduct> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      //Internaliación
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        S.delegate
+      ],
+      supportedLocales: S.delegate.supportedLocales,
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           title: Text(
-              'Lista de Contactos',
+            S.of(context).listaContactosText,
             style: TextStyle(
               color: colorPrimario,
               fontWeight: FontWeight.bold,
@@ -54,14 +68,13 @@ class _ListViewProductState extends State<ListViewProduct> {
           backgroundColor: Colors.white,
           actions: [
             IconButton(
-              icon: new Icon(
-                Icons.logout,
-                color: colorPrimario,
-              ),
-              onPressed: () async {
-                await FirebaseAuth.instance.signOut();
-              }
-            ),
+                icon: new Icon(
+                  Icons.logout,
+                  color: colorPrimario,
+                ),
+                onPressed: () async {
+                  await FirebaseAuth.instance.signOut();
+                }),
           ],
         ),
         body: Center(
@@ -81,13 +94,12 @@ class _ListViewProductState extends State<ListViewProduct> {
                           children: <Widget>[
                             //nuevo imagen
                             new Container(
-                              padding: new EdgeInsets.all(5.0),
-                              child: Image.asset(
-                                'assets/icon/user.jpg',
-                                width: 50,
-                                height: 50,
-                              )
-                            ),
+                                padding: new EdgeInsets.all(5.0),
+                                child: Image.asset(
+                                  'assets/icon/user.jpg',
+                                  width: 50,
+                                  height: 50,
+                                )),
                             Expanded(
                               child: ListTile(
                                   title: Text(
@@ -149,8 +161,8 @@ class _ListViewProductState extends State<ListViewProduct> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Alerta'),
-          content: Text('¿Está seguro de eliminar este contacto?'),
+          title: Text(S.of(context).alertaText),
+          content: Text(S.of(context).preguntaEliminarContactoText),
           actions: <Widget>[
             IconButton(
               icon: Icon(
@@ -164,7 +176,7 @@ class _ListViewProductState extends State<ListViewProduct> {
               ),
             ),
             new FlatButton(
-              child: Text('Cancelar'),
+              child: Text(S.of(context).cancelarText),
               onPressed: () {
                 Navigator.of(context).pop();
               },

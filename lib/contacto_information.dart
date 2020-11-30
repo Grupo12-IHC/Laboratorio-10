@@ -1,7 +1,12 @@
 import 'package:chat_unsa/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'file:///D:/Proyectos/chat_unsa2/lib/contacto.dart';
+//import 'file:///D:/Proyectos/chat_unsa2/lib/contacto.dart';
+import 'package:chat_unsa/contacto.dart';
+
+//Internalización
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:chat_unsa/generated/l10n.dart';
 
 class ContactoInformation extends StatefulWidget {
   final Contacto contacto;
@@ -27,6 +32,16 @@ class _ContactoInformationState extends State<ContactoInformation> {
 
   @override
   Widget build(BuildContext context) {
+    //Internaliación
+    localizationsDelegates:
+    [
+      GlobalMaterialLocalizations.delegate,
+      GlobalWidgetsLocalizations.delegate,
+      GlobalCupertinoLocalizations.delegate,
+      S.delegate
+    ];
+    supportedLocales:
+    S.delegate.supportedLocales;
     return Scaffold(
       appBar: AppBar(
         leading: new IconButton(
@@ -37,10 +52,8 @@ class _ContactoInformationState extends State<ContactoInformation> {
           onPressed: () => Navigator.of(context).pop(),
         ),
         title: Text(
-            'Informacion del usuario',
-          style: TextStyle(
-            color: colorPrimario
-          ),
+          S.of(context).informacionUsuarioText,
+          style: TextStyle(color: colorPrimario),
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
@@ -58,13 +71,12 @@ class _ContactoInformationState extends State<ContactoInformation> {
                       'assets/icon/user.jpg',
                       width: 150,
                       height: 150,
-                    )
-                ),
+                    )),
                 Padding(
                   padding: EdgeInsets.only(top: 20.0),
                 ),
                 new Text(
-                  "Nombre : ${widget.contacto.nombre}",
+                  S.of(context).nombrePlaceHolder(widget.contacto.nombre),
                   style: TextStyle(fontSize: 18.0),
                 ),
                 Padding(
@@ -72,7 +84,7 @@ class _ContactoInformationState extends State<ContactoInformation> {
                 ),
                 Divider(),
                 new Text(
-                  "Cui : ${widget.contacto.cui}",
+                  S.of(context).cuiPlaceHolder(widget.contacto.cui),
                   style: TextStyle(fontSize: 18.0),
                 ),
                 Padding(
@@ -80,7 +92,7 @@ class _ContactoInformationState extends State<ContactoInformation> {
                 ),
                 Divider(),
                 new Text(
-                  "Correo : ${widget.contacto.correo}",
+                  S.of(context).correoPlaceHolder(widget.contacto.correo),
                   style: TextStyle(fontSize: 18.0),
                 ),
                 Padding(
@@ -88,7 +100,7 @@ class _ContactoInformationState extends State<ContactoInformation> {
                 ),
                 Divider(),
                 new Text(
-                  "Escuela : ${widget.contacto.escuela}",
+                  S.of(context).escuelaPlaceHolder(widget.contacto.escuela),
                   style: TextStyle(fontSize: 18.0),
                 ),
                 Padding(
