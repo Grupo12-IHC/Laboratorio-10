@@ -1,6 +1,6 @@
-import 'package:chat_unsa/Button.dart';
-import 'package:chat_unsa/ButtonTransparent.dart';
-import 'package:chat_unsa/TextFieldContainer.dart';
+import 'file:///D:/Proyectos/LAb%2009/Laboratorio-08/lib/Widgets/button.dart';
+import 'file:///D:/Proyectos/LAb%2009/Laboratorio-08/lib/Widgets/buttonTransparent.dart';
+import 'file:///D:/Proyectos/LAb%2009/Laboratorio-08/lib/Widgets/textFieldContainer.dart';
 import 'package:chat_unsa/constant.dart';
 import 'package:chat_unsa/listview_contacto.dart';
 import 'package:chat_unsa/recover.dart';

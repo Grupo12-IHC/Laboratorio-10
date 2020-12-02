@@ -1,6 +1,8 @@
 import 'package:chat_unsa/constant.dart';
 import 'package:chat_unsa/contacto_information.dart';
 import 'package:chat_unsa/contacto_screen.dart';
+
+import 'package:chat_unsa/widgets/navigationBar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -56,6 +58,7 @@ class _ListViewProductState extends State<ListViewProduct> {
       supportedLocales: S.delegate.supportedLocales,
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+        bottomNavigationBar: NavigationBar(),
         appBar: AppBar(
           title: Text(
             S.of(context).listaContactosText,
@@ -236,3 +239,7 @@ class _ListViewProductState extends State<ListViewProduct> {
     );
   }
 }
+
+
+
+
