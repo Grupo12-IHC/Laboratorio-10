@@ -52,6 +52,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "preguntaEliminarContactoText" : MessageLookupByLibrary.simpleMessage("¿Está seguro de eliminar este contacto?"),
     "preguntaNoTienesCuentaText" : MessageLookupByLibrary.simpleMessage("¿No tienes cuenta?"),
     "preguntaOlvidasteContraText" : MessageLookupByLibrary.simpleMessage("¿Olvidaste tu contraseña?"),
+    "recuperacionCuentaText" : MessageLookupByLibrary.simpleMessage("Recuperacion de cuenta"),
+    "recuperacionText" : MessageLookupByLibrary.simpleMessage("Enviar codigo de recuperacion"),
     "registrarseText" : MessageLookupByLibrary.simpleMessage("Registrarse"),
     "registrateAquiText" : MessageLookupByLibrary.simpleMessage("Registrate aquí"),
     "usuarioNoExistenteText" : MessageLookupByLibrary.simpleMessage("El usuario que usted ha ingresado no existe")

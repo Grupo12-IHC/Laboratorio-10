@@ -24,5 +24,7 @@
     "nombrePlaceHolder":"Nombre: {nombre}",
     "cuiPlaceHolder":"CUI: {cui}",
     "correoPlaceHolder":"Correo: {correo}",
-    "escuelaPlaceHolder":"Escuela Profesional: {escuela}"
+    "escuelaPlaceHolder":"Escuela Profesional: {escuela}",
+    "recuperacionText": "Enviar codigo de recuperacion",
+    "recuperacionCuentaText": "Recuperacion de cuenta"
 }

@@ -10,7 +10,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:chat_unsa/generated/l10n.dart';
 
-class Register extends StatelessWidget {
+
+class Register extends StatefulWidget {
+
+
+
+  @override
+  _RegisterState createState() => _RegisterState();
+
+}
+
+class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     final appTitle = 'Form Validation Demo';
@@ -32,7 +42,7 @@ class Register extends StatelessWidget {
           ),
           elevation: 0,
           title: new Text(
-            'REGISTRATE',
+            S.of(context).registrarseText,
             style: TextStyle(
               color: Colors.white,
             ),
@@ -42,7 +52,16 @@ class Register extends StatelessWidget {
         ),
         backgroundColor: Colors.white,
         body: MyCustomForm(),
+
       ),
+      //Internaliación
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        S.delegate
+      ],
+      supportedLocales: S.delegate.supportedLocales,
     );
   }
 }
@@ -94,7 +113,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                   }
                   return null;
                 },
-                decoration: InputDecoration(labelText: 'Correo institucional'),
+                decoration: InputDecoration(labelText: S.of(context).correoInstitucionalText),
               ),
             ),
             TextFieldContainer(
@@ -108,7 +127,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                   }
                   return null;
                 },
-                decoration: InputDecoration(labelText: 'Contraseña'),
+                decoration: InputDecoration(labelText: S.of(context).contraText),
                 obscureText: true,
               ),
             ),
@@ -124,7 +143,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                   } //;
                 },
                 child: Text(
-                  'Registrarse',
+                  S.of(context).registrarseText,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontSize: 24,

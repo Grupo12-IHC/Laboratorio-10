@@ -68,7 +68,7 @@ class _ContactoInformationState extends State<ContactoInformation> {
                 new Container(
                     padding: new EdgeInsets.all(5.0),
                     child: Image.asset(
-                      'assets/icon/user.jpg',
+                      'assets/icon/user.png',
                       width: 150,
                       height: 150,
                     )),

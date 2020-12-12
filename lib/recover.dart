@@ -6,6 +6,10 @@ import 'package:chat_unsa/listview_contacto.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+//Internalización
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:chat_unsa/generated/l10n.dart';
+
 class Recover extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -21,12 +25,20 @@ class Recover extends StatelessWidget {
             onPressed: () => Navigator.of(context).pop(),
           ),
           backgroundColor: colorPrimario,
-          title: Text('Recuperacion de cuenta'),
+          title: Text(S.of(context).recuperacionCuentaText),
           centerTitle: true,
         ),
         backgroundColor: Colors.white,
         body: MyCustomForm(),
       ),
+      //Internaliación
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        S.delegate
+      ],
+      supportedLocales: S.delegate.supportedLocales,
     );
   }
 }
@@ -70,7 +82,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                   return null;
                 },
                 decoration: InputDecoration(
-                    labelText: 'Correo institucional'
+                    labelText: S.of(context).correoInstitucionalText
                 ),
               ),
             ),
@@ -83,7 +95,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                   );
                 },
                 child: Text(
-                  'Enviar codioo de recuperacion',
+                  S.of(context).recuperacionText,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontSize: 16,

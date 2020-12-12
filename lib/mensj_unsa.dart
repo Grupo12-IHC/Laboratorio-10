@@ -47,7 +47,7 @@ class _MensajesChat extends State<MensajesChat > {
         title: Row(
           children:<Widget>[
             Image.asset(
-              'assets/icon/user.jpg',
+              'assets/icon/user.png',
               fit: BoxFit.contain,
               height: 45,
             ),
@@ -179,7 +179,7 @@ class _MensajesChat extends State<MensajesChat > {
               height: 60,
               width: 60,
               child: CircleAvatar(
-                backgroundImage: AssetImage("assets/icon/user.jpg"),
+                backgroundImage: AssetImage("assets/icon/user.png"),
               ),
             ) : Container(),
 
@@ -218,7 +218,7 @@ class _MensajesChat extends State<MensajesChat > {
               height: 60,
               width: 60,
               child: CircleAvatar(
-                backgroundImage: AssetImage("assets/icon/user.jpg"),
+                backgroundImage: AssetImage("assets/icon/user.png"),
               ),
             ) : Container(),
 

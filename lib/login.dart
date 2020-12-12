@@ -125,7 +125,7 @@ class MyCustomFormState extends State<MyCustomForm> {
             children: <Widget>[
               Image(
                 image: AssetImage('assets/images/chat_unsa.png'),
-                width: size.height * 0.42,
+                width: size.width* 0.7,
               ),
               TextFieldContainer(
                 child: TextFormField(

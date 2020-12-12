@@ -1,6 +1,8 @@
 import 'package:chat_unsa/constant.dart';
 import 'package:chat_unsa/contacto_information.dart';
 import 'package:chat_unsa/contacto_screen.dart';
+import 'package:chat_unsa/grafics_chart.dart';
+import 'package:chat_unsa/mensj_unsa.dart';
 
 import 'package:chat_unsa/widgets/navigationBar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -14,6 +16,7 @@ import 'package:chat_unsa/contacto.dart';
 //Internalización
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:chat_unsa/generated/l10n.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
 class ListViewProduct extends StatefulWidget {
   @override
@@ -21,7 +24,10 @@ class ListViewProduct extends StatefulWidget {
 }
 
 final contactoReference =
-    FirebaseDatabase.instance.reference().child('contacto');
+
+
+
+FirebaseDatabase.instance.reference().child('contacto');
 
 class _ListViewProductState extends State<ListViewProduct> {
   List<Contacto> items;
@@ -99,7 +105,7 @@ class _ListViewProductState extends State<ListViewProduct> {
                             new Container(
                                 padding: new EdgeInsets.all(5.0),
                                 child: Image.asset(
-                                  'assets/icon/user.jpg',
+                                  'assets/icon/user.png',
                                   width: 50,
                                   height: 50,
                                 )),
@@ -136,7 +142,17 @@ class _ListViewProductState extends State<ListViewProduct> {
                                   color: Colors.black,
                                 ),
                                 onPressed: () => _navigateToContacto(
-                                    context, items[position])),
+                                    context, items[position])
+                            ),
+                            IconButton(
+                              icon: Icon(
+                                Icons.chat,
+                                color: Colors.black,
+                              ),
+                              onPressed: ()=> _mensajesChat(
+                                  context, items[position]
+                              ),
+                            ),
                           ],
                         ),
                         color: Colors.white,
@@ -146,13 +162,28 @@ class _ListViewProductState extends State<ListViewProduct> {
                 );
               }),
         ),
-        floatingActionButton: FloatingActionButton(
+        floatingActionButton: SpeedDial(
           child: Icon(
-            Icons.add,
+            Icons.touch_app,
             color: Colors.white,
           ),
           backgroundColor: colorPrimario,
-          onPressed: () => _createNewContacto(context),
+          children: [
+            SpeedDialChild(
+              child: Icon(
+                Icons.add,
+                color: Colors.white,
+              ),
+              onTap: () => _createNewContacto(context),
+            ),
+            SpeedDialChild(
+                child: Icon(
+                  Icons.add_chart,
+                  color: Colors.white,
+                ),
+                onTap: () => _graficChart(context)
+            ),
+          ],
         ),
       ),
     );
@@ -236,6 +267,18 @@ class _ListViewProductState extends State<ListViewProduct> {
       MaterialPageRoute(
           builder: (context) =>
               ContactoScreen(Contacto(null, '', '', '', '', ''))),
+    );
+  }
+  void _mensajesChat(BuildContext context, Contacto contacto) async{
+    await Navigator.push(
+      context,
+      MaterialPageRoute(builder:(context)=> MensajesChat(contacto)),
+    );
+  }
+  void _graficChart(BuildContext context) async{
+    await Navigator.push(
+      context,
+      MaterialPageRoute(builder:(context)=> GraficChart(null)),
     );
   }
 }

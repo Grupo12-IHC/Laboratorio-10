@@ -35,7 +35,7 @@ class _GraficChart extends State<GraficChart> {
     var data3 = [
       new Pollution(1985, 'Ingenieria', 100),
       new Pollution(1980, 'Sociales', 120),
-      new Pollution(1985, 'Biomedica', 140),
+      new Pollution(1985, 'Biomedicas', 140),
     ];
 
     var piedata = [
@@ -302,6 +302,7 @@ class _GraficChart extends State<GraficChart> {
               ],
             ),
             title: Text('Graficos'),
+            centerTitle: true,
           ),
           body: TabBarView(
             children: [
@@ -460,6 +461,7 @@ class _GraficChart extends State<GraficChart> {
           ),
         ),
       ),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

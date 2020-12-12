@@ -294,6 +294,26 @@ class S {
       args: [escuela],
     );
   }
+
+  /// `Send recovery code`
+  String get recuperacionText {
+    return Intl.message(
+      'Send recovery code',
+      name: 'recuperacionText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account recovery`
+  String get recuperacionCuentaText {
+    return Intl.message(
+      'Account recovery',
+      name: 'recuperacionCuentaText',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
